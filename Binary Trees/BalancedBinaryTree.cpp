@@ -1,6 +1,5 @@
 #include<iostream>
 #include<queue>
-#include<climits>
 using namespace std;
 
 template<typename T>
@@ -26,25 +25,23 @@ public:
 
 };
 
-pair<int,int> minMax(BinaryTreeNode<int>*root)
+pair<int,bool> balancedTree(BinaryTreeNode<int>*root)
 {
-   pair<int,int>p;
+	pair<int,bool> p;
 	if(root==NULL)
 	{
-		p.first=INT_MAX;
-		p.second=INT_MIN;
+		p.first=0;
+		p.second=true;
 		return p;
 	}
 
-	pair<int,int>left=minMax(root->left);
-	pair<int,int>right=minMax(root->right);
+	pair<int,bool>left=balancedTree(root->left);
+	pair<int,bool>right=balancedTree(root->right);
 
-	p.first=min(root->data,min(left.first,right.first));
-	p.second=max(root->data,max(left.second,right.second));
+	p.first=1+max(left.first,right.first);
+	p.second=((abs(left.first-right.first) <=1 ?true:false)&&left.second&&right.second);
 
 	return p;
-
-
 }
 
 BinaryTreeNode<int>* takeInputLevelWise()
@@ -123,10 +120,10 @@ int main()
 {
     BinaryTreeNode<int>*root=takeInputLevelWise();
 
-    pair<int,int>p=minMax(root);
-    cout<<p.first<<" "<<p.second;
+    cout<<balancedTree(root).second;
     delete root;
 }
+
 
 
 
