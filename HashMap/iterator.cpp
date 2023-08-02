@@ -27,6 +27,10 @@ int main()
         it++;
     }
 
+     unordered_map <string,int> ::iterator it2=ourmap.find("abc");
+     cout<<it2->second;
+     ourmap.erase(it2);
+
 
     cout<<endl;
     vector<int> v;

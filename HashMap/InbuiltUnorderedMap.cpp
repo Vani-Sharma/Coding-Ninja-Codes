@@ -32,6 +32,17 @@ int main()
     else
         cout<<"abc not present"<<endl;
 
+        string str="vani";
+        unordered_map<char,int>obj2;
+    for(int i=0;i<str.length();i++)
+    {
+        if(obj2.count(str[i])>0)
+            continue;
+
+        ++obj2[str[i]];
+        cout<<str[i];
+    }
+
 
 }
 
