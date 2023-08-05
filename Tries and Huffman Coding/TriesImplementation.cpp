@@ -56,10 +56,71 @@ public:
         insert(root,word);
     }
 
+     private:
+     bool search(TrieNode*root, string word) {
+        // Write your code here
+        if(word.size()==0)
+        {
+            if(root->isTerminal)
+            return true;
+
+            else
+            return false;
+        }
+
+
+          int index = word[0] - 'a';
+          if( root->children[index] && root->children[index]->data==word[0])
+            return search(root->children[index],word.substr(1));
+
+          else
+          return false;
+
+
+    }
+
+    public:
+
+    bool search(string word) {
+        // Write your code here
+          return search(root,word);
+
+    }
+
+    private:
+        void remove(TrieNode*root,string word)
+        {
+            if(word.size()==0)
+            {
+                root->isTerminal=false;
+                return;
+            }
+            int index=word[0]-'a';
+            if(root->children[index] && root->children[index]->data==word[0])
+                remove(root->children[index],word.substr(1));
+
+            return;
+        }
+
+
+    public:
+        void remove(string word)
+        {
+            remove(root,word);
+        }
+
 };
 
 int main()
 {
     Trie obj;
     obj.insert("and");
+    obj.insert("are");
+    obj.insert("pei");
+    obj.insert("shugj");
+    obj.insert("ijei");
+
+    cout<<obj.search("shugj");
+    obj.remove("shugj");
+    cout<<obj.search("shugj");
 }
