@@ -117,8 +117,9 @@ int main()
     obj.insert("and");
     obj.insert("are");
     obj.insert("pei");
+    obj.insert("xyzz");
     obj.insert("shugj");
-    obj.insert("ijei");
+    obj.insert("ije");
 
     cout<<obj.search("shugj");
     obj.remove("shugj");
