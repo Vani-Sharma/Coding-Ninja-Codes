@@ -3,19 +3,12 @@ using namespace std;
 
 int getCost(int**input,int i,int j,int m,int n)
 {
+    // --normal recursive approach
 	if(i+1==m && j+1==n)
 	return input[i][j];
 
-	else if(i+1==m)
-	{
-
-		return input[i][j]+getCost(input, i, j+1,  m,  n);
-
-        }
-
-        else if (j + 1 == n) {
-                return input[i][j] + getCost(input, i + 1, j, m, n);
-        }
+	if(i>=m || j>=n)
+    return INT_MAX;
 
         int x = getCost(input, i + 1, j + 1, m, n);
         int y = getCost(input, i, j + 1, m, n);
@@ -26,6 +19,7 @@ int getCost(int**input,int i,int j,int m,int n)
 
 int getcostMemo(int**input,int i,int j,int m,int n, vector<vector<int>>output)
 {
+    // --memoization
         if(i+1==m && j+1==n)
 	return input[i][j];
 
