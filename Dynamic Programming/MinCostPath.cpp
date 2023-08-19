@@ -39,6 +39,7 @@ int getcostMemo(int**input,int i,int j,int m,int n, vector<vector<int>>output)
 
 int minCostPathDP(int **input,int m,int n)
 {
+    // --dp
     vector<vector<int>>output(m,vector<int>(n));
     output[m-1][n-1]=input[m-1][n-1];
 
